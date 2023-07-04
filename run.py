@@ -20,27 +20,6 @@ data = SHEET.worksheet("recipes")
 
 recipes = data.get_all_records()
 
-ingredients = [
-    "flour",
-    "eggs",
-    "milk",
-    "salt"
-]
-
-instructions = [
-    "mix all the ingredients in a bowl",
-    "heat up a frying pan",
-    "pour mixture into the pan to cover the surface"
-]
-
-recipe1 = {
-    "name": "Crepes",
-    "serves": 2,
-    "ingredients": ingredients,
-    "instructions": instructions
-}
-
-
 
 def create_recipe():
     """
@@ -73,4 +52,20 @@ def create_recipe():
     return recipe
 
 
-create_recipe()
+def add_recipe_to_list(recipe):
+    """
+    Add the recipe to the google sheet in a new row
+    """
+    print("Adding to the library...")
+    data.append_row(recipe)
+    
+
+def main():
+    """
+    Run all program functions
+    """
+    recipe = create_recipe()
+    add_recipe_to_list(recipe)
+
+
+main()
