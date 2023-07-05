@@ -35,7 +35,6 @@ def choose_open_or_new():
         except ValueError:
             print("Invalid entry. Please try again.\n")
 
-
 def create_recipe():
     """
     Get user input for name, serves, ingredients and instructions.
@@ -80,17 +79,26 @@ def add_recipe_to_list():
 
 
 def print_recipes():
-    column = data.col_values(1)
-    for i in column:
-        index = column.index(i)
-        print(f"{index}: {i}")
+    
+    while True:
+        try:
+            column = data.col_values(1)
+            for i in column:
+                index = column.index(i)
+                print(f"{index}: {i}")
+            print("Please choose a recipe to open by"
+                  "inserting the coresponding number\n")
+            recipe_index = int(input("Enter your option here:\n"))
+            correct_index = recipe_index - 1
+            if correct_index in range(len(recipes)):
+                print("")
+                print(recipes[correct_index])
+                break
+            else:
+                print("Input out of range! Please try again.\n")
+        except ValueError:
+            print("Invalid entry. Please try again\n")
 
-    print("Please choose a recipe to open by"
-          "inserting the coresponding number")
-    recipe_index = int(input("Enter your option here:\n"))
-    correct_index = recipe_index - 1
-    print("")
-    print(recipes[correct_index])
 
 def main():
     """
