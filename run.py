@@ -18,6 +18,7 @@ data = SHEET.worksheet("recipes")
 
 recipes = data.get_all_records()
 
+
 def choose_open_or_new():
     while True:
         try:
@@ -27,7 +28,7 @@ def choose_open_or_new():
             if user_input == 1:
                 add_recipe_to_list()
             elif user_input == 2:
-                print("recipes()")                
+                print("recipes()")
             else:
                 print("Please try again")
         except ValueError:
@@ -39,7 +40,7 @@ def create_recipe():
     Get user input for name, serves, ingredients and instructions.
     Store these values in a list and return this list
     """
-    
+
     recipe_list = []
     print("Welcome!\n")
     name = input("Enter the name of the recipe here:\n")
@@ -59,11 +60,13 @@ def create_recipe():
     instructions_list = []
     print("")
     print("Enter the instructions seperated by comma.\n")
-    print("Exapmple: Beat the eggs in a bowl, add the cheese, cut the bacon in cubes and fry it, add the bacon to the bowl, boil the pasta, add the pasta in the bowl and stir\n")
+    print("Exapmple: Beat the eggs in a bowl, add the cheese,"
+          "cut the bacon in cubes and fry it, add the bacon to the bowl,"
+          "boil the pasta, add the pasta in the bowl and stir\n")
     instructions = input("Enter the instructions here:\n")
     instructions_list.append(instructions)
     recipe_list.append(str(instructions_list))
-    
+
     return recipe_list
 
 
@@ -74,13 +77,13 @@ def add_recipe_to_list():
     recipe = create_recipe()
     print("Adding to the library...\n")
     data.append_row(recipe)
-    
+
 
 def main():
     """
     Run all program functions
     """
-    choose_open_or_new()    
-    
+    choose_open_or_new()
+
 
 main()
