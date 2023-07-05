@@ -22,17 +22,18 @@ recipes = data.get_all_records()
 def choose_open_or_new():
     while True:
         try:
-            print("Choose on of the following:")
-            print("1: Create a recipe", "2: Open recipes")
+            print("Welcome!\n")
+            print("Choose on of the following:\n")
+            print("1: Create a recipe", "2: Open recipes\n")
             user_input = int(input("Enter your option here:\n"))
             if user_input == 1:
                 add_recipe_to_list()
             elif user_input == 2:
-                print("recipes()")
+                print_recipes()
             else:
-                print("Please try again")
+                print("Input out of range. Please try again.\n")
         except ValueError:
-            print("Try again")
+            print("Invalid entry. Please try again.\n")
 
 
 def create_recipe():
@@ -42,7 +43,6 @@ def create_recipe():
     """
 
     recipe_list = []
-    print("Welcome!\n")
     name = input("Enter the name of the recipe here:\n")
     recipe_list.append(str(name))
     print("")
@@ -78,6 +78,19 @@ def add_recipe_to_list():
     print("Adding to the library...\n")
     data.append_row(recipe)
 
+
+def print_recipes():
+    column = data.col_values(1)
+    for i in column:
+        index = column.index(i)
+        print(f"{index}: {i}")
+
+    print("Please choose a recipe to open by"
+          "inserting the coresponding number")
+    recipe_index = int(input("Enter your option here:\n"))
+    correct_index = recipe_index - 1
+    print("")
+    print(recipes[correct_index])
 
 def main():
     """
