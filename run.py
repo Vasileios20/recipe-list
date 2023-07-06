@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-import pandas as pd
 
 
 SCOPE = [
@@ -20,7 +19,6 @@ data = SHEET.worksheet("recipes")
 def choose_open_or_new():
     recipes = data.get_all_records()
     print("Welcome!\n")
-    print(recipes)
     while True:
         try:
             print("Choose on of the following:\n")
@@ -52,10 +50,21 @@ def get_recipe_name():
 
 
 def get_serves_number():
-    print("")
-    print("Enter how many people serves.\n")
-    print("serves should be a number, ie 2\n")
-    serves = int(input("Enter serves here:\n"))
+    while True:
+        print("")
+        print("Enter how many people serves.\n")
+        print("serves must be a number, ie 2\n")
+
+        try:
+            serves = int(input("Enter serves here:\n"))
+        except ValueError:
+            print("Invalid entry. Please try again")
+            continue
+        if serves < 0:
+            print("Sorry, serves must not be a negative number.")
+            continue
+        else:
+            break
 
     return serves
 
@@ -98,7 +107,7 @@ def create_recipe():
 
     print("Adding to the library...\n")
     data.append_row(recipe_list)
-    print(f"RECIPE LIST after :{recipe_list}")
+    print(f"Your recipe :\n{recipe_list}\n")
     recipe_list.clear()
 
 
