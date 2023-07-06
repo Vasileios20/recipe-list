@@ -16,18 +16,18 @@ SHEET = GSPREAD_CLIENT.open("recipes_list")
 
 data = SHEET.worksheet("recipes")
 
-recipes = data.get_all_records()
-
 
 def choose_open_or_new():
+    recipes = data.get_all_records()
+    print("Welcome!\n")
+    print(recipes)
     while True:
         try:
-            print("Welcome!\n")
             print("Choose on of the following:\n")
             print("1: Create a recipe", "2: Open recipes\n")
             user_input = int(input("Enter your option here:\n"))
             if user_input == 1:
-                add_recipe_to_list()
+                create_recipe()
             elif user_input == 2:
                 print_recipes()
             else:
@@ -35,27 +35,44 @@ def choose_open_or_new():
         except ValueError:
             print("Invalid entry. Please try again.\n")
 
-def create_recipe():
+
+def get_recipe_name():
     """
     Get user input for name, serves, ingredients and instructions.
     Store these values in a list and return this list
     """
+    column = data.col_values(1)
+    while True:
+        name = input("Enter the name of the recipe here:\n")
+        if name in column:
+            print("Recipe already in library. "
+                  "Please choose a different name\n")
+        else:
+            return name
 
-    recipe_list = []
-    name = input("Enter the name of the recipe here:\n")
-    recipe_list.append(str(name))
+
+def get_serves_number():
     print("")
     print("Enter how many people serves.\n")
     print("serves should be a number, ie 2\n")
     serves = int(input("Enter serves here:\n"))
-    recipe_list.append(serves)
+
+    return serves
+
+
+def get_ingredients_list():
+
     ingredients_list = []
     print("")
     print("Enter the ingredients seperated  by comma.\n")
     print("Exapmple: eggs, flour, cream\n")
     ingredients = input("Enter the ingredients here:\n")
-    ingredients_list.append(str(ingredients))
-    recipe_list.append(str(ingredients_list))
+    ingredients_list.append((ingredients))
+    return ingredients_list
+
+
+def get_instructions():
+
     instructions_list = []
     print("")
     print("Enter the instructions seperated by comma.\n")
@@ -64,29 +81,36 @@ def create_recipe():
           "boil the pasta, add the pasta in the bowl and stir\n")
     instructions = input("Enter the instructions here:\n")
     instructions_list.append(instructions)
-    recipe_list.append(str(instructions_list))
-
-    return recipe_list
+    return instructions_list
 
 
-def add_recipe_to_list():
-    """
-    Add the recipe to the google sheet in a new row
-    """
-    recipe = create_recipe()
+def create_recipe():
+    name = get_recipe_name()
+    serves = get_serves_number()
+    ingredients = get_ingredients_list()
+    instructions = get_instructions()
+    recipe_list = []
+
+    recipe_list.append(name)
+    recipe_list.append(serves)
+    recipe_list.append(str(ingredients))
+    recipe_list.append(str(instructions))
+
     print("Adding to the library...\n")
-    data.append_row(recipe)
+    data.append_row(recipe_list)
+    print(f"RECIPE LIST after :{recipe_list}")
+    recipe_list.clear()
 
 
 def print_recipes():
-    
+    recipes = data.get_all_records()
+    column = data.col_values(1)
     while True:
         try:
-            column = data.col_values(1)
             for i in column:
                 index = column.index(i)
                 print(f"{index}: {i}")
-            print("Please choose a recipe to open by"
+            print("Please choose a recipe to open by "
                   "inserting the coresponding number\n")
             recipe_index = int(input("Enter your option here:\n"))
             correct_index = recipe_index - 1
