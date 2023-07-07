@@ -19,15 +19,22 @@ data = SHEET.worksheet("recipes")
 def choose_open_or_new():
     recipes = data.get_all_records()
     print("Welcome!\n")
+    message = "Please choose one of the following."
+    user_input_menu(message)
+
+
+def user_input_menu(message):
     while True:
         try:
-            print("Choose on of the following:\n")
-            print("1: Create a recipe", "2: Open recipes\n")
+            print(f"{message}\n")
+            print(f"1: Create a new recipe", "2: Open recipes", "3: Exit\n")
             user_input = int(input("Enter your option here:\n"))
             if user_input == 1:
                 create_recipe()
             elif user_input == 2:
                 print_recipes()
+            elif user_input == 3:
+                exit()
             else:
                 print("Input out of range. Please try again.\n")
         except ValueError:
@@ -58,7 +65,7 @@ def get_serves_number():
         try:
             serves = int(input("Enter serves here:\n"))
         except ValueError:
-            print("Invalid entry. Please try again")
+            print("Invalid entry. Please try again.")
             continue
         if serves < 0:
             print("Sorry, serves must not be a negative number.")
@@ -73,7 +80,7 @@ def get_ingredients_list():
 
     ingredients_list = []
     print("")
-    print("Enter the ingredients seperated  by comma.\n")
+    print("Enter the ingredients seperated by comma.\n")
     print("Exapmple: eggs, flour, cream\n")
     ingredients = input("Enter the ingredients here:\n")
     ingredients_list.append((ingredients))
@@ -109,28 +116,31 @@ def create_recipe():
     data.append_row(recipe_list)
     print(f"Your recipe :\n{recipe_list}\n")
     recipe_list.clear()
+    message = "What would you like to do next?"
+    user_input_menu(message)
 
 
 def print_recipes():
     recipes = data.get_all_records()
     column = data.col_values(1)
+    message = "What would you like to do next?"
     while True:
         try:
             for i in column:
                 index = column.index(i)
                 print(f"{index}: {i}")
             print("Please choose a recipe to open by "
-                  "inserting the coresponding number\n")
+                  "inserting the corresponding number\n")
             recipe_index = int(input("Enter your option here:\n"))
             correct_index = recipe_index - 1
             if correct_index in range(len(recipes)):
                 print("")
                 print(recipes[correct_index])
-                break
+                user_input_menu(message)
             else:
                 print("Input out of range! Please try again.\n")
         except ValueError:
-            print("Invalid entry. Please try again\n")
+            print("Invalid entry. Please try again.\n")
 
 
 def main():
