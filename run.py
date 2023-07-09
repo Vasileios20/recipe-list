@@ -6,7 +6,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -57,63 +57,54 @@ def get_recipe_name():
 
 
 def get_serves_number():
-    while True:
-        print("")
-        print("Enter how many people serves.\n")
-        print("serves must be a number, ie 2\n")
-
-        try:
-            serves = int(input("Enter serves here:\n"))
-        except ValueError:
-            print("Invalid entry. Please try again.")
-            continue
-        if serves < 0:
-            print("Sorry, serves must not be a negative number.")
-            continue
-        else:
-            break
+    print("")
+    print("Enter how many people serves.\n")
+    print("serves must be a number, ie 2\n")
+    serves = validate_int_input("serves")
 
     return serves
 
 
-def get_ingredients_list():
-
-
-    print('Enter the ingredients & quantity\n')
-    ingredients_list = []
-    ingredients = {}
+def validate_int_input(list_item):
     while True:
-        
         try:
-            ingredient = input("Enter the ingredient here:\n")
-            quantity = int(input(f"Enter quantity here:\n"))
+            user_input = int(input(f"Enter {list_item} here:\n"))
         except ValueError:
             print("Invalid entry. Please try again.\n")
             continue
-        if quantity < 0:
-            print("Sorry, quantity must not be a negative number.\n")
+        if user_input < 0:
+            print(f"Sorry, {list_item} must not be a negative number.\n")
             continue
+        else:
+            break
+    return user_input
 
-        print(f"You have entered {data}\n")
+
+def get_ingredients_list():
+
+    print('Enter the ingredients & quantity\n')
+    print("quantity must be a number.\n")
+
+    ingredients = {}
+    while True:
+        ingredient = input("Enter the ingredient here:\n")
+        quantity = validate_int_input("quantity")
+
+        print(f"You have entered {ingredient} : {quantity}\n")
 
         ingredients[ingredient] = quantity
 
-        print(ingredients)
+        print(f"Your ingredients list : {ingredients}\n")
+        while True:
+            print("Would you like to add another ingredient? y/n\n")
 
-        print("Would you like to add another ingredient? y/n\n")
-
-        user_option = input("Enter you option here:\n")
-        if user_option.lower() == "y":
-            continue
-
-        elif user_option.lower() == "n":
-            print(ingredients)
-            ingredients_list.append(ingredients)
-            print(ingredients_list)
-        else:
-            break
-
-        return ingredients_list
+            user_option = input("Enter you option here:\n")
+            if user_option.lower() == "y":
+                break
+            elif user_option.lower() == "n":
+                return ingredients
+            else:
+                print("Please try again.\n")
 
 
 def get_instructions():
@@ -132,7 +123,7 @@ def get_instructions():
 def create_recipe():
     name = get_recipe_name()
     serves = get_serves_number()
-    
+
     ingredients = get_ingredients_list()
     instructions = get_instructions()
     recipe_list = []
