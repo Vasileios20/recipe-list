@@ -109,15 +109,26 @@ def get_ingredients_list():
 
 def get_instructions():
 
-    instructions_list = []
+    instructions_list ={}
     print("")
-    print("Enter the instructions seperated by comma.\n")
-    print("Exapmple: Beat the eggs in a bowl, add the cheese,"
-          "cut the bacon in cubes and fry it, add the bacon to the bowl,"
-          "boil the pasta, add the pasta in the bowl and stir\n")
-    instructions = input("Enter the instructions here:\n")
-    instructions_list.append(instructions)
-    return instructions_list
+    print("Enter the instructions for each step.\n")
+    
+    step_index = 0
+    while True:
+        step_index += 1
+        instructions = input(f"Enter step {step_index} here:\n")
+        instructions_list[f"Step {step_index}"] = instructions
+        print(f"Step : {step_index}")
+        while True:
+            print("Would you like to add another step? y/n\n")
+
+            user_option = input("Enter you option here:\n")
+            if user_option.lower() == "y":
+                break
+            elif user_option.lower() == "n":
+                return instructions_list
+            else:
+                print("Please try again.\n")
 
 
 def create_recipe():
