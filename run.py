@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import pprint
 
 
 SCOPE = [
@@ -159,6 +160,9 @@ def create_recipe():
 def print_recipes():
     recipes = data.get_all_records()
     column = data.col_values(1)
+    empty_list_message = "Your list is empty. Please create a new recipe."
+    while len(column) <= 1:
+        user_input_menu(empty_list_message)
     message = "What would you like to do next?"
     while True:
         try:
