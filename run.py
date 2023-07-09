@@ -83,13 +83,15 @@ def validate_int_input(list_item):
 
 def get_ingredients_list():
 
-    print('Enter the ingredients & quantity\n')
+    print('Enter the ingredients, the quantity and the measurement type.\n')
     print("quantity must be a number.\n")
 
     ingredients = {}
     while True:
         ingredient = input("Enter the ingredient here:\n")
-        quantity = validate_int_input("quantity")
+        quantity_input = validate_int_input("quantity")
+        measurement_type = get_measurement_type()
+        quantity = str(quantity_input) + str(measurement_type)
 
         print(f"You have entered {ingredient} : {quantity}\n")
         if ingredient not in ingredients:
@@ -99,28 +101,46 @@ def get_ingredients_list():
             print("This ingredient is already in your list.\n")
             print(f"Your ingredients list : {ingredients}\n")
 
-        
         end = add_another_item("ingredient")
-        if end == False:
+        if end is False:
             return ingredients
+
+
+def get_measurement_type():
+    while True:
+        try:
+            print("")
+            print("Please choose one of the following.\n")
+            print("1: gr", "2: ml", "3: units\n")
+            measurement_type = int(input("Enter you option here:\n"))
+            if measurement_type == 1:
+                return "gr"
+            elif measurement_type == 2:
+                return "ml"
+            elif measurement_type == 3:
+                return ""
+            else:
+                print("Input out of range. Please try again.\n")
+        except ValueError:
+            print("Invalid entry. Please try again.\n")
 
 
 def get_instructions():
 
-    instructions_list ={}
+    instructions_list = {}
     print("")
     print("Enter the instructions for each step.\n")
-    
+
     step_index = 0
     while True:
         step_index += 1
         instructions = input(f"Enter step {step_index} here:\n")
         instructions_list[f"Step {step_index}"] = instructions
-        
+
         print(instructions_list)
-        
+
         end = add_another_item("step")
-        if end == False:
+        if end is False:
             return instructions_list
 
 
