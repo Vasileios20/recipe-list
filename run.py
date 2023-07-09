@@ -78,13 +78,42 @@ def get_serves_number():
 
 def get_ingredients_list():
 
+
+    print('Enter the ingredients & quantity\n')
     ingredients_list = []
-    print("")
-    print("Enter the ingredients seperated by comma.\n")
-    print("Exapmple: eggs, flour, cream\n")
-    ingredients = input("Enter the ingredients here:\n")
-    ingredients_list.append((ingredients))
-    return ingredients_list
+    ingredients = {}
+    while True:
+        
+        try:
+            ingredient = input("Enter the ingredient here:\n")
+            quantity = int(input(f"Enter quantity here:\n"))
+        except ValueError:
+            print("Invalid entry. Please try again.\n")
+            continue
+        if quantity < 0:
+            print("Sorry, quantity must not be a negative number.\n")
+            continue
+
+        print(f"You have entered {data}\n")
+
+        ingredients[ingredient] = quantity
+
+        print(ingredients)
+
+        print("Would you like to add another ingredient? y/n\n")
+
+        user_option = input("Enter you option here:\n")
+        if user_option.lower() == "y":
+            continue
+
+        elif user_option.lower() == "n":
+            print(ingredients)
+            ingredients_list.append(ingredients)
+            print(ingredients_list)
+        else:
+            break
+
+        return ingredients_list
 
 
 def get_instructions():
@@ -103,6 +132,7 @@ def get_instructions():
 def create_recipe():
     name = get_recipe_name()
     serves = get_serves_number()
+    
     ingredients = get_ingredients_list()
     instructions = get_instructions()
     recipe_list = []
