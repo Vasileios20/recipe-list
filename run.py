@@ -95,16 +95,9 @@ def get_ingredients_list():
         ingredients[ingredient] = quantity
 
         print(f"Your ingredients list : {ingredients}\n")
-        while True:
-            print("Would you like to add another ingredient? y/n\n")
-
-            user_option = input("Enter you option here:\n")
-            if user_option.lower() == "y":
-                break
-            elif user_option.lower() == "n":
-                return ingredients
-            else:
-                print("Please try again.\n")
+        end = add_another_item("ingredient")
+        if end == False:
+            return ingredients
 
 
 def get_instructions():
@@ -118,17 +111,24 @@ def get_instructions():
         step_index += 1
         instructions = input(f"Enter step {step_index} here:\n")
         instructions_list[f"Step {step_index}"] = instructions
-        print(f"Step : {step_index}")
-        while True:
-            print("Would you like to add another step? y/n\n")
+        
+        print(instructions_list)
+        
+        end = add_another_item("step")
+        if end == False:
+            return instructions_list
 
-            user_option = input("Enter you option here:\n")
-            if user_option.lower() == "y":
-                break
-            elif user_option.lower() == "n":
-                return instructions_list
-            else:
-                print("Please try again.\n")
+
+def add_another_item(value):
+    while True:
+        print(f"Would you like to add another {value} y/n\n")
+        user_option = input("Enter you option here:\n")
+        if user_option.lower() == "y":
+            break
+        elif user_option.lower() == "n":
+            return False
+        else:
+            print("Please try again.\n")
 
 
 def create_recipe():
