@@ -91,10 +91,14 @@ def get_ingredients_list():
         quantity = validate_int_input("quantity")
 
         print(f"You have entered {ingredient} : {quantity}\n")
+        if ingredient not in ingredients:
+            ingredients[ingredient] = quantity
+            print(f"Your ingredients list : {ingredients}\n")
+        else:
+            print("This ingredient is already in your list.\n")
+            print(f"Your ingredients list : {ingredients}\n")
 
-        ingredients[ingredient] = quantity
-
-        print(f"Your ingredients list : {ingredients}\n")
+        
         end = add_another_item("ingredient")
         if end == False:
             return ingredients
