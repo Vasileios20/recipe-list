@@ -1,6 +1,5 @@
 import gspread
 from google.oauth2.service_account import Credentials
-import pprint
 
 
 SCOPE = [
@@ -18,6 +17,10 @@ data = SHEET.worksheet("recipes")
 
 
 def choose_open_or_new():
+    """
+    Get user input option by inserting a number to
+    run the corresponding function
+    """
     recipes = data.get_all_records()
     print("Welcome!\n")
     message = "Please choose one of the following."
@@ -25,6 +28,14 @@ def choose_open_or_new():
 
 
 def user_input_menu(message):
+    """
+    Get user input option by inserting a number to
+    run the corresponding function and validate input.
+    User input must be a number. Inside the try check
+    the input if it's a number and in range, prints
+    out of range if not or raises ValueError if it's any
+    other character.
+    """
     while True:
         try:
             print(f"{message}\n")
@@ -44,11 +55,13 @@ def user_input_menu(message):
 
 def get_recipe_name():
     """
-    Get user input for name, serves, ingredients and instructions.
-    Store these values in a list and return this list
+    Get user input for the recipe's name. Checks if
+    name is in the list. If there is asks user to enter
+    a different name.
     """
     column = data.col_values(1)
     while True:
+        print("")
         name = input("Enter the name of the recipe here:\n")
         if name in column:
             print("Recipe already in library. "
@@ -58,6 +71,9 @@ def get_recipe_name():
 
 
 def get_serves_number():
+    """
+    Get serves number input from the user
+    """
     print("")
     print("Enter how many people serves.\n")
     print("serves must be a number, ie 2\n")
@@ -67,6 +83,11 @@ def get_serves_number():
 
 
 def validate_int_input(list_item):
+    """
+    Inside the try check if the input is a possitive number.
+    Raises ValueError if input is not a number or if number
+    is negative.
+    """
     while True:
         try:
             user_input = int(input(f"Enter {list_item} here:\n"))
@@ -82,13 +103,21 @@ def validate_int_input(list_item):
 
 
 def get_ingredients_list():
-
-    print('Enter the ingredients, the quantity and the measurement type.\n')
+    """
+    Get ingredients name, quantity and measurement type input from the user.
+    Check if ingredient is already in the list and ask user
+    to insert again if there is. When ingredient has been inserted
+    asks user to add another ingredient or to continue to the next function.
+    """
+    print("")
+    print("Enter the ingredients, the quantity and the measurement type "
+          "(gr/ml/units).\n")
     print("quantity must be a number.\n")
 
     ingredients = {}
     while True:
         ingredient = input("Enter the ingredient here:\n")
+        print("")
         quantity_input = validate_int_input("quantity")
         measurement_type = get_measurement_type()
         quantity = str(quantity_input) + str(measurement_type)
@@ -107,6 +136,12 @@ def get_ingredients_list():
 
 
 def get_measurement_type():
+    """
+    Get measuerement type input from the user.
+    Checks if it's a number and in range of options.
+    Raise ValueError if it's any other character or prints
+    message if it's out of range.
+    """
     while True:
         try:
             print("")
@@ -126,6 +161,11 @@ def get_measurement_type():
 
 
 def get_instructions():
+    """
+    Gets instructions input from the user. Prints the step number
+    for every input. Ask the user if wants to add another
+    step.
+    """
 
     instructions_list = {}
     print("")
@@ -137,7 +177,8 @@ def get_instructions():
         instructions = input(f"Enter step {step_index} here:\n")
         instructions_list[f"Step {step_index}"] = instructions
 
-        print(instructions_list)
+        print("")
+        print(f"{instructions_list}\n")
 
         end = add_another_item("step")
         if end is False:
@@ -145,10 +186,16 @@ def get_instructions():
 
 
 def add_another_item(value):
+    """
+    Get user choice input to add another item
+    or to continue to the next function. Checks if
+    user's input is y or n, if not ask user to try again.
+    """
     while True:
         print(f"Would you like to add another {value} y/n\n")
         user_option = input("Enter you option here:\n")
         if user_option.lower() == "y":
+            print("")
             break
         elif user_option.lower() == "n":
             return False
@@ -157,6 +204,12 @@ def add_another_item(value):
 
 
 def create_recipe():
+    """
+    Run functions needed to create a recipe.
+    Appends name, serves, ingredients and instructions
+    into a list and append this list in a new row in
+    google sheet.
+    """
     name = get_recipe_name()
     serves = get_serves_number()
 
@@ -169,6 +222,7 @@ def create_recipe():
     recipe_list.append(str(ingredients))
     recipe_list.append(str(instructions))
 
+    print("")
     print("Adding to the library...\n")
     data.append_row(recipe_list)
     print(f"Your recipe :\n{recipe_list}\n")
@@ -178,6 +232,12 @@ def create_recipe():
 
 
 def print_recipes():
+    """
+    Get user option to print recipe selected. If recipe list (google sheet)
+    is empty asks user to create a new recipe. Inside the try checks if
+    user's input is a number and in range of options. Raises ValueError if
+    input is not a number or prints message if negative number or out of range.
+    """
     recipes = data.get_all_records()
     column = data.col_values(1)
     empty_list_message = "Your list is empty. Please create a new recipe."
@@ -193,6 +253,7 @@ def print_recipes():
                   "inserting the corresponding number\n")
             recipe_index = int(input("Enter your option here:\n"))
             correct_index = recipe_index - 1
+            print("")
             if correct_index in range(len(recipes)):
                 print("")
                 print(recipes[correct_index])
