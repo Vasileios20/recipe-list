@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+import json
 
 
 SCOPE = [
@@ -167,7 +168,7 @@ def get_instructions():
     step.
     """
 
-    instructions_list = {}
+    instructions_list = []
     print("")
     print("Enter the instructions for each step.\n")
 
@@ -175,14 +176,15 @@ def get_instructions():
     while True:
         step_index += 1
         instructions = input(f"Enter step {step_index} here:\n")
-        instructions_list[f"Step {step_index}"] = instructions
+        instructions_list.append(instructions)
 
         print("")
         print(f"{instructions_list}\n")
 
         end = add_another_item("step")
         if end is False:
-            return instructions_list
+            instruction_list_json = json.dumps(instructions_list)
+            return instruction_list_json
 
 
 def add_another_item(value):
