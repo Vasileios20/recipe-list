@@ -45,7 +45,7 @@ def user_input_menu(message):
             if user_input == 1:
                 create_recipe()
             elif user_input == 2:
-                print_recipes()
+                get_recipe_index_to_print()
             elif user_input == 3:
                 exit()
             else:
@@ -239,14 +239,14 @@ def create_recipe():
     user_input_menu(message)
 
 
-def print_recipes():
+def get_recipe_index_to_print():
     """
     Get user option to print recipe selected. If recipe list (google sheet)
     is empty asks user to create a new recipe. Inside the try checks if
     user's input is a number and in range of options. Raises ValueError if
     input is not a number or prints message if negative number or out of range.
     """
-    recipes = data.get_all_records()
+    recipes = data.get_all_values()
     column = data.col_values(1)
     empty_list_message = "Your list is empty. Please create a new recipe."
     while len(column) <= 1:
@@ -260,16 +260,64 @@ def print_recipes():
             print("Please choose a recipe to open by "
                   "inserting the corresponding number\n")
             recipe_index = int(input("Enter your option here:\n"))
-            correct_index = recipe_index - 1
+
             print("")
-            if correct_index in range(len(recipes)):
+            if recipe_index in range(len(recipes)) and recipe_index > 0:
                 print("")
-                print(recipes[correct_index])
+                print_recipe(recipe_index)
                 user_input_menu(message)
             else:
                 print("Input out of range! Please try again.\n")
         except ValueError:
             print("Invalid entry. Please try again.\n")
+
+
+def print_recipe(recipe_index):
+    """
+    Given recipe information from Google Sheets in the below format, pretty  
+    print it out as in the following example:
+    
+    Scrambled Eggs
+    ----------------
+
+    Ingredients:
+        - Eggs - 2
+        - Milk - 100ml
+
+    Instructions:
+        1. Whisk the eggs and milk in a bowl.
+        2. Heat some butter on a pan.
+        3. Bla.
+
+    Args:
+        recipe_index: index of a recipe from the Google
+            Sheets database.
+    """
+    recipes = data.get_all_values()
+    name = recipes[recipe_index][0]
+    serves = recipes[recipe_index][1]
+
+    try:
+        ingredients = json.loads(recipes[recipe_index][2])
+        instructions = json.loads(recipes[recipe_index][3])
+    except json.decoder.JSONDecodeError:
+        print("There was a problem loading the recipe.\n")
+
+    print(name)
+    print("-" * (len(name) + 2))
+
+    print(f"\nserves - {serves}")
+
+    print("\nIngredients:")
+    for ingredient in ingredients:
+        name = ingredient["item"]
+        quantity = ingredient["quantity"]
+        unit = ingredient["unit"]
+        print(f"- {name} : {quantity} {unit}")
+
+    print("\nInstructions")
+    for index, instruction in enumerate(instructions):
+        print(f"{index + 1}. {instruction}\n")
 
 
 def main():
