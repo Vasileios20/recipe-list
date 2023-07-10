@@ -115,25 +115,31 @@ def get_ingredients_list():
           "(gr/ml/units).\n")
     print("quantity must be a number.\n")
 
-    ingredients = {}
+    ingredients_list = []
     while True:
+        
+        ingredients = {}
         ingredient = input("Enter the ingredient here:\n")
         print("")
         quantity_input = validate_int_input("quantity")
         measurement_type = get_measurement_type()
-        quantity = str(quantity_input) + str(measurement_type)
 
-        print(f"You have entered {ingredient} : {quantity}\n")
-        if ingredient not in ingredients:
-            ingredients[ingredient] = quantity
-            print(f"Your ingredients list : {ingredients}\n")
+        ingredients["item"] = ingredient
+        ingredients["quantity"] = quantity_input
+        ingredients["unit"] = measurement_type
+
+        res = [d.get('item', None) for d in ingredients_list]
+        if ingredient not in res:
+            ingredients_list.append(ingredients)
+            print(f"\nYour list: {ingredients_list}\n")
         else:
-            print("This ingredient is already in your list.\n")
-            print(f"Your ingredients list : {ingredients}\n")
+            print("\nThis ingredient is already in your list.\n")
+            print(f"Your list: {ingredients_list}\n")
 
         end = add_another_item("ingredient")
         if end is False:
-            return ingredients
+            ingr_list = json.dumps(ingredients_list)
+            return ingr_list
 
 
 def get_measurement_type():
