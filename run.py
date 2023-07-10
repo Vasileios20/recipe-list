@@ -41,7 +41,7 @@ def user_input_menu(message):
         try:
             print(f"{message}\n")
             print(f"1: Create a new recipe", "2: Open recipes", "3: Exit\n")
-            user_input = int(input("Enter your option here:\n"))
+            user_input = int(input("Enter your option here:\n").strip())
             if user_input == 1:
                 create_recipe()
             elif user_input == 2:
@@ -63,7 +63,7 @@ def get_recipe_name():
     column = data.col_values(1)
     while True:
         print("")
-        name = input("Enter the name of the recipe here:\n")
+        name = input("Enter the name of the recipe here:\n").strip()
         if name in column:
             print("Recipe already in library. "
                   "Please choose a different name\n")
@@ -91,7 +91,7 @@ def validate_int_input(list_item):
     """
     while True:
         try:
-            user_input = int(input(f"Enter {list_item} here:\n"))
+            user_input = int(input(f"Enter {list_item} here:\n").strip())
         except ValueError:
             print("Invalid entry. Please try again.\n")
             continue
@@ -117,9 +117,9 @@ def get_ingredients_list():
 
     ingredients_list = []
     while True:
-        
+
         ingredients = {}
-        ingredient = input("Enter the ingredient here:\n")
+        ingredient = input("Enter the ingredient here:\n").strip()
         print("")
         quantity_input = validate_int_input("quantity")
         measurement_type = get_measurement_type()
@@ -154,7 +154,7 @@ def get_measurement_type():
             print("")
             print("Please choose one of the following.\n")
             print("1: gr", "2: ml", "3: units\n")
-            measurement_type = int(input("Enter you option here:\n"))
+            measurement_type = int(input("Enter you option here:\n").strip())
             if measurement_type == 1:
                 return "gr"
             elif measurement_type == 2:
@@ -181,7 +181,7 @@ def get_instructions():
     step_index = 0
     while True:
         step_index += 1
-        instructions = input(f"Enter step {step_index} here:\n")
+        instructions = input(f"Enter step {step_index} here:\n").strip()
         instructions_list.append(instructions)
 
         print("")
@@ -201,7 +201,7 @@ def add_another_item(value):
     """
     while True:
         print(f"Would you like to add another {value} y/n\n")
-        user_option = input("Enter you option here:\n")
+        user_option = input("Enter you option here:\n").strip()
         if user_option.lower() == "y":
             print("")
             break
@@ -259,7 +259,7 @@ def get_recipe_index_to_print():
                 print(f"{index}: {i}")
             print("Please choose a recipe to open by "
                   "inserting the corresponding number\n")
-            recipe_index = int(input("Enter your option here:\n"))
+            recipe_index = int(input("Enter your option here:\n").strip())
 
             print("")
             if recipe_index in range(len(recipes)) and recipe_index > 0:
@@ -274,9 +274,9 @@ def get_recipe_index_to_print():
 
 def print_recipe(recipe_index):
     """
-    Given recipe information from Google Sheets in the below format, pretty  
+    Given recipe information from Google Sheets in the below format, pretty
     print it out as in the following example:
-    
+
     Scrambled Eggs
     ----------------
 
