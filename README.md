@@ -22,7 +22,7 @@ a recipe library where you can store and view recipes.
   * [Local Development](#local-development)
     * [How to fork](#how-to-fork)
     * [How to clone](#how-to-clone)    
-
+* [Testing](#testing)
 
 # User Experience (UX)
 
@@ -93,7 +93,7 @@ Python 3.10.6
 ---
 * [Google Sheets API/ gspread](https://docs.gspread.org/en/latest/) - To Open a spreadsheet, read, write, and format cell ranges.
 * [Google Drive API/ Google OAuth 2.0](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) - The Google Drive API allows clients to access resources from Google Drive.
-* [json](https://docs.python.org/3/library/json.html) - To pretty print recipes
+* [json](https://docs.python.org/3/library/json.html) - To pretty print recipes.
 
 
 # Deployment and Local Development
@@ -149,3 +149,6 @@ To clone the repository :
 4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
 5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
 
+# Testing
+
+Please see [Testing](TESTING.md)
