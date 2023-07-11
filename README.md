@@ -1,32 +1,59 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Recipe List
 
-Welcome,
+This project has been developed for the PP3 for the Code Institute. It is
+a recipe library where you can store and view recipes.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+![GitHub contributors](https://img.shields.io/badge/CONTRIBUTORS-1-<RED>) ![PEP8 validation](https://img.shields.io/badge/PEP8-VALIDATED-<GREEN>)
 
-## Reminders
+[View the deployed project here](https://recipe-list-3ecfc536592a.herokuapp.com/)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## Contents
 
-## Creating the Heroku app
+* [User Experience (UX)](#user-experience-ux)  
+* [Features](#features)
+  * [Main Menu](#main-menu)
+    * [Create a new recipe](#create-a-new-recipe)
+    * [Open recipes](#open-recipes)
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+# Features
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Main Menu
+On the main menu the user can choose to: 1. Create a new recipe, 2. Open recipes' library or 3. Exit the program.
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+![Main Menu](/documentation/images/features/main_menu.png)
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+### Create a new recipe
+When the user selects to create a new recipe they will be asked to enter the recipe's name.
 
-Connect your GitHub repository and deploy as normal.
+![Enter recipe's name](/documentation/images/features/recipe_name.png)
 
-## Constraints
+Then will be asked to enter how many people the recipe can serve.
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+![Serves](/documentation/images/features/serves.png)
 
----
+Next will be asked to add the ingredients. First the ingredient name, then the quantity and finally the measurement type. When the user finishes entering an ingredient, the user will be asked if they want to add another ingredient.
 
-Happy coding!
+![Enter ingredients](/documentation/images/features/ingredient_quantity_measurement_type.png)
+
+Last the user will be asked to enter the instructions by steps. A message with each step will be printed and when finsihed, the user will be asked if
+they want to add another step. If no, the recipe will be printed and the user will be asked what to do next by showing the main menu.
+
+![Enter instructions](/documentation/images/features/instructions_steps.png)
+
+![Recipe finsihed](/documentation/images/features/recipe_finished.png)
+
+## Open Recipes
+When the user selects to open the recipes' library, if the library is empty, a message will be printed saying that the library is empty asking to create a new recipe.
+
+![Empty library](/documentation/images/features/test_empty_list.png)
+
+If there is a recipe in the library, a list with recipes will be printed.
+
+![Recipes Library](/documentation/images/features/recipes_library.png)
+
+Here they can choose which recipe to show/print.
+
+![Selected recipe](/documentation/images/features/printed_recipe.png)
+
+
+
