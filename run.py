@@ -313,11 +313,11 @@ def print_recipe(recipe_index):
         name = ingredient["item"]
         quantity = ingredient["quantity"]
         unit = ingredient["unit"]
-        print(f"- {name} : {quantity} {unit}")
+        print(f"- {name} : {quantity}{unit}")
 
     print("\nInstructions")
     for index, instruction in enumerate(instructions):
-        print(f"{index + 1}. {instruction}\n")
+        print(f"Step {index + 1}. {instruction}\n")
 
 
 def main():
