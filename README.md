@@ -9,7 +9,8 @@ a recipe library where you can store and view recipes.
 
 ## Contents
 
-* [User Experience (UX)](#user-experience-ux)  
+* [User Experience (UX)](#user-experience-ux)
+* [Flowchart](#flow-chart)
 * [Features](#features)
   * [Main Menu](#main-menu)
     * [Create a new recipe](#create-a-new-recipe)
@@ -35,6 +36,10 @@ a recipe library where you can store and view recipes.
 |Frequent User |I want to get a shopping list with ingredients I have to buy $^1$|
 
 $^1$ To be implemented in the future
+
+# Flow chart
+
+![](/documentation/images/recipe_list_flow_chart.png)
 
 # Features
 
