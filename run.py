@@ -235,14 +235,9 @@ def create_recipe():
     print("")
     print("Adding to the library...\n")
     data.append_row(recipe_list)
-    
-    # get list of recipes from worksheet
-    recipes = data.get_all_values()
-    # reverse the list to bring last recipe first in the list
-    recipes.reverse()
-    # print the first recipe in the list
+
     print("Your recipe :\n")
-    print_recipe(1)
+    print_recipe(-1)
 
     recipe_list.clear()
     message = "What would you like to do next?"
