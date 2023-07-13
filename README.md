@@ -1,7 +1,9 @@
 # Recipe List
 
+![](/documentation/images/mockup.png)
+
 This project has been developed for the PP3 for the Code Institute. It is
-a recipe library where you can store and view recipes.
+a recipe library where you can store and view recipes. To store a recipe you will have to enter a name for the recipe, how many people the recipe serves, the ingredients - name, quantity and measurement type(gr, ml, units) and finally the instructions by steps. The recipes stored in a Google Sheet.
 
 ![GitHub contributors](https://img.shields.io/badge/CONTRIBUTORS-1-<RED>) ![PEP8 validation](https://img.shields.io/badge/PEP8-VALIDATED-<GREEN>)
 
@@ -80,6 +82,16 @@ If there is a recipe in the library, a list with recipes will be printed.
 Here they can choose which recipe to show/print.
 
 ![Selected recipe](/documentation/images/features/printed_recipe.png)
+
+## Google Sheet
+
+The app uses the Google Drive API and the Google Sheets API to connect and save the recipes in a google sheet.
+
+![Google Sheet Empty](/documentation/images/google_sheet_empty.png)
+
+It stores the name as a string, the serves must be a possitive integer, the ingredients in a list of dictionaries and the instructions as list of strings for each step.
+
+![Sample Google Sheet](/documentation/images/google_sheet.png)
 
 # Technologies Used
 
