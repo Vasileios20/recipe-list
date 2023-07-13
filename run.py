@@ -218,6 +218,7 @@ def create_recipe():
     Appends name, serves, ingredients and instructions
     into a list and append this list in a new row in
     google sheet.
+    Pretty prints the recipe.
     """
     name = get_recipe_name()
     serves = get_serves_number()
@@ -234,7 +235,15 @@ def create_recipe():
     print("")
     print("Adding to the library...\n")
     data.append_row(recipe_list)
-    print(f"Your recipe :\n{recipe_list}\n")
+    
+    # get list of recipes from worksheet
+    recipes = data.get_all_values()
+    # reverse the list to bring last recipe first in the list
+    recipes.reverse()
+    # print the first recipe in the list
+    print("Your recipe :\n")
+    print_recipe(1)
+
     recipe_list.clear()
     message = "What would you like to do next?"
     user_input_menu(message)
