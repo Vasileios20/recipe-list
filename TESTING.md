@@ -1,3 +1,13 @@
+# Contents 
+
+* [CI python linter](#jshint)
+* [Manual Testing](#manual-testing)
+* [Bugs](#bugs)
+  * [Solved Bugs](#solved-bugs)
+
+## CI Python linter
+![](/documentation/images/testing/pep8_linter.png)
+
 ## Manual Testing
 
 |Feature|Expected Outcome|Testing Performed|Result|Pass/Fail|
@@ -7,7 +17,7 @@ Main Menu
 ||||||
 |--|--|--|--|--|
 |Choose one option from the main menu: 1: Create a new recipe 2: Open recipes 3: Exit for exiting the game|Call the corresponding function|Input "1"|Create a recipe function called|[PASS](/documentation/images/features/recipe_name.png)|
-||Call the corresponding function|Input "2"|Print recipe function called|[PASS](/documentation/images/features/main_menu_open_recipes.png)|
+||Call the corresponding function|Input "2"|Print recipe function called|[PASS](/documentation/images/features/recipes_library.png)|
 ||Call the corresponding function|Input "3"|Exited program|PASS|
 
 Main Menu Validation
@@ -49,3 +59,17 @@ Open recipes
 ||||||
 |--|--|--|--|--|
 |Empry library|Print message "Your library is empty. Please create a new recipe"|Selected "2" when library(google sheet) was empty|Message printed|[PASS](/documentation/images/features/test_empty_list.png)|
+
+## Bugs
+
+### Solved Bugs
+|#|Bug|Solution|
+|--|--|--|
+|1|I wasn't able to print the last created recipe without exiting the program|The variable recipe_list was global, I had to make it local variable in the function create_recipe() and clear the list before exiting the function|
+|2| Recipe's list(variable column) in function get_recipe_index_to_print() printed the list starting from index 0|I had to add the index that I wanted to start from.
+``` python
+ print("-- Name")
+ for i in column[1:]:
+    index = column.index(i)
+    print(f"{index}: {i}")
+```
