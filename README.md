@@ -41,7 +41,7 @@ $^1$ To be implemented in the future
 
 # Flow chart
 
-![](/documentation/images/recipe_list_flow_chart.png)
+![](/documentation/images/recipe_list_flowchart.png)
 
 # Features
 
