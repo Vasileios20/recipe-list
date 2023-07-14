@@ -342,10 +342,10 @@ def clear():
 
 def main():
     """
+    Main menu function.
     Get user input option by inserting a number to
     run the corresponding function
     """
-    recipes = data.get_all_records()
     print("Welcome!\n")
     message = "Please choose one of the following."
     user_input_menu(message)
