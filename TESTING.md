@@ -18,7 +18,7 @@ Main Menu
 |--|--|--|--|--|
 |Choose one option from the main menu: 1: Create a new recipe 2: Open recipes 3: Exit for exiting the game|Call the corresponding function|Input "1"|Create a recipe function called|[PASS](/documentation/images/features/recipe_name.png)|
 ||Call the corresponding function|Input "2"|Print recipe function called|[PASS](/documentation/images/features/recipes_library.png)|
-||Call the corresponding function|Input "3"|Exited program|PASS|
+||Call the corresponding function|Input "3"|Exited program|[PASS](/documentation/images/testing/exit.gif)|
 
 Main Menu Validation
 ||||||
