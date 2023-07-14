@@ -26,6 +26,9 @@ a recipe library where you can store and view recipes. To store a recipe you wil
     * [How to clone](#how-to-clone)
   * [Deployment](#deployment)
 * [Testing](#testing)
+* [Credits](#credits)
+  * [Code Used](#code-used)
+  * [Aknowledgments](#aknowledgments)
 
 # User Experience (UX)
 
@@ -110,6 +113,8 @@ It stores the name as a string, the serves must be a possitive integer, the ingr
 * [Heroku](https://www.heroku.com/) - To deploy the app.
 * [Techsini](https://techsini.com/) - To show the web image in various devices.
 * [Lucid app](https://lucid.app/) - To create the flowchart.
+* [Cloudconvert](https://cloudconvert.com/) - To convert .webm file to .gif.
+* [Google Drive](https://drive.google.com/) - To create google sheet and store the data.
 ---
 * [Google Sheets API/ gspread](https://docs.gspread.org/en/latest/) - To Open a spreadsheet, read, write, and format cell ranges.
 * [Google Drive API/ Google OAuth 2.0](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) - The Google Drive API allows clients to access resources from Google Drive.
@@ -170,3 +175,25 @@ The next step is to add buildpacks to the application.
 # Testing
 
 Please see [Testing](TESTING.md)
+
+# Credits
+
+## Code Used
+
+To build the app the following websites have been used to find solutions on the various questions I had.
+
+[geeksforgeeks](https://www.geeksforgeeks.org/)
+
+[stackoverflow](https://stackoverflow.com/)
+
+[askpython](https://www.askpython.com/)
+
+[w3schools](https://www.w3schools.com/)
+
+[pythonpoint](https://pythonpoint.net/)
+
+## Aknowledgments
+
+A massive thank you to my mentor Brian Macharia for his guidance and the help during the process of building the app, especially on how to use the JSON encoding and pretty print the recipes library.
+
+The tutor from [Code Institute](https://codeinstitute.net/) Rebecca who helped me solve the issue with duplicated lists.
