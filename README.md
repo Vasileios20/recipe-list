@@ -21,10 +21,10 @@ a recipe library where you can store and view recipes. To store a recipe you wil
   * [Languages Used](#languages-used)
   * [Frameworks, Libraries & Programs Used](#frameworks-libraries--programs-used)
 * [Deployment and Local Development](#deployment-and-local-development)
-  * [Deployment](#deployment)
   * [Local Development](#local-development)
     * [How to fork](#how-to-fork)
-    * [How to clone](#how-to-clone)    
+    * [How to clone](#how-to-clone)
+  * [Deployment](#deployment)
 * [Testing](#testing)
 
 # User Experience (UX)
@@ -116,6 +116,21 @@ It stores the name as a string, the serves must be a possitive integer, the ingr
 
 # Deployment and Local Development
 
+## Local Development
+### How to fork
+To fork the repository :
+1. Log in (sign up) to GitHub.
+2. Go to the repository for this project [Recipe list](https://github.com/Vasileios20/recipe-list).
+3. Click the fork button in the top right corner.
+
+### How to clone
+To clone the repository :
+1. Log in (sign up) to GitHub.
+2. Go to the repository for this project [Recipe list](https://github.com/Vasileios20/recipe-list).
+3. Click on the code button, select one of the HTTPS, SSH or GitHub CLI and copy the link shown.
+4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
+5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
+
 ## Deployment
 The site is deployed using Heroku. Deployed site [Recipe list](https://recipe-list-3ecfc536592a.herokuapp.com/)
 * Create a list of requirements 
@@ -151,21 +166,6 @@ The next step is to add buildpacks to the application.
 * Search for the Github repository name.
 * Then click "connect".
 * Scroll down  and click "Deploy Branch".
-
-## Local Development
-### How to fork
-To fork the repository :
-1. Log in (sign up) to GitHub.
-2. Go to the repository for this project [Recipe list](https://github.com/Vasileios20/recipe-list).
-3. Click the fork button in the top right corner.
-
-### How to clone
-To clone the repository :
-1. Log in (sign up) to GitHub.
-2. Go to the repository for this project [Recipe list](https://github.com/Vasileios20/recipe-list).
-3. Click on the code button, select one of the HTTPS, SSH or GitHub CLI and copy the link shown.
-4. Open the terminal in your code editor and change the current working directory to the location you want to use for the cloned directory.
-5. Type 'git clone' into the terminal and then paste the link you copied in step 3. Press enter.
 
 # Testing
 
