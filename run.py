@@ -17,17 +17,6 @@ SHEET = GSPREAD_CLIENT.open("recipes_list")
 data = SHEET.worksheet("recipes")
 
 
-def choose_open_or_new():
-    """
-    Get user input option by inserting a number to
-    run the corresponding function
-    """
-    recipes = data.get_all_records()
-    print("Welcome!\n")
-    message = "Please choose one of the following."
-    user_input_menu(message)
-
-
 def user_input_menu(message):
     """
     Get user input option by inserting a number to
@@ -47,6 +36,7 @@ def user_input_menu(message):
             elif user_input == 2:
                 get_recipe_index_to_print()
             elif user_input == 3:
+                clear()
                 exit()
             else:
                 print("Input out of range. Please try again.\n")
@@ -343,11 +333,22 @@ def print_recipe(recipe_index):
         print(f"Step {index + 1}. {instruction}\n")
 
 
+def clear():
+    """
+    Clears the terminal
+    """
+    print('\033c')
+
+
 def main():
     """
-    Run all program functions
+    Get user input option by inserting a number to
+    run the corresponding function
     """
-    choose_open_or_new()
+    recipes = data.get_all_records()
+    print("Welcome!\n")
+    message = "Please choose one of the following."
+    user_input_menu(message)
 
 
 main()
