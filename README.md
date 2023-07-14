@@ -97,7 +97,8 @@ It stores the name as a string, the serves must be a possitive integer, the ingr
 
 ## Languages Used
 
-Python 3.10.6
+* Python 3.10.6
+* JSON - To serialize recipe data for network transmission between the program and Google Sheets, and for simplified storage in the Google Sheets database.
 
 ## Frameworks, Libraries & Programs Used
 
@@ -107,11 +108,11 @@ Python 3.10.6
 * [TinyPNG](https://tinypng.com/) - To reduce size of the images.
 * [Shields IO](https://shields.io/) - To add badges to README.
 * [Heroku](https://www.heroku.com/) - To deploy the app.
+* [Techsini](https://techsini.com/) - To show the web image in various devices.
+* [Lucid app](https://lucid.app/) - To create the flowchart.
 ---
 * [Google Sheets API/ gspread](https://docs.gspread.org/en/latest/) - To Open a spreadsheet, read, write, and format cell ranges.
 * [Google Drive API/ Google OAuth 2.0](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) - The Google Drive API allows clients to access resources from Google Drive.
-* [json](https://docs.python.org/3/library/json.html) - To pretty print recipes.
-
 
 # Deployment and Local Development
 
