@@ -36,9 +36,13 @@ a recipe library where you can store and view recipes. To store a recipe you wil
 |--|--|--| 
 |First Time User|I want to create and store recipes|
 ||I want to read recipes from a library|
-|Returning User|I want edit a recipe $^1$|
+|Returning User|I want to create and store recipes|
 ||I want to read recipes from a library|
-|Frequent User |I want to get a shopping list with ingredients I have to buy $^1$|
+||I want edit a recipe $^1$|
+|Frequent User |I want to create and store recipes|
+||I want to read recipes from a library|
+||I want edit a recipe $^1$|
+||I want to get a shopping list with ingredients I have to buy $^1$|
 
 $^1$ To be implemented in the future
 
